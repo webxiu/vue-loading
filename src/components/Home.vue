@@ -1,5 +1,8 @@
 <template>
   <div class="hello">
+    <!-- 顶部搜索 -->
+    <search-bar v-if="searchBarVisible && data" />
+
     <load-more v-if="data"
             :topMethod="onRefreshCallback"
             @loadMore="infiniteCallback"
@@ -31,6 +34,10 @@
         </div>
       </div>
     </load-more>
+    <!-- 回到顶部 -->
+    <back-head />
+    <!-- 底部导航 -->
+    <footer-bar />
   </div>
 </template>
 
@@ -38,10 +45,14 @@
 import axios from 'axios'
 import {mapGetters} from 'vuex'
 import LoadMore from './LoadMore'
+import BackHead from './BackHead'
+import FooterBar from './FooterBar'
+import SearchBar from './SearchBar'
 export default {
-  name: 'HelloWorld',
+  name: 'Home',
   data () {
     return {
+      searchBarVisible: true,//是否显示搜索框
       pageNo: 1,
 			pageSize: 5,
 			// url: "http://127.0.0.1:3000/news/page/",
@@ -88,7 +99,7 @@ export default {
     }
   },
   components:{
-      LoadMore
+      LoadMore,BackHead,FooterBar,SearchBar
   },
   created(){
     this.loadData(this.pageNo, this.pageSize);
@@ -175,7 +186,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+*{margin:0;padding:0;}
+ul,li{list-style: none;}
 .banner{
     height: 200px;
 }

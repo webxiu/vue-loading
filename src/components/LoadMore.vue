@@ -106,6 +106,7 @@ export default {
   methods: {
     //加载数据
     async onloadMoreScroll() {
+      console.log('load-more滑倒底部触发')
       if (
         this.AllLoaded ||
         this.LoadMoreLoading ||
@@ -224,6 +225,9 @@ export default {
 };
 </script>
 <style scoped>
+.loadmore{
+  margin-bottom: 80px;
+}
 .loadmoreText {
   display: flex;
   flex: 1;
@@ -232,6 +236,7 @@ export default {
   font-size: 15px;
   background: transparent;
   padding: 10px 0;
+
 }
 .loadmoreText span {
   padding-left: 10px;
